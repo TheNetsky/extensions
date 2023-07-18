@@ -2748,7 +2748,7 @@ exports.MyAnimeListInfo = {
     author: 'Netsky',
     contentRating: types_1.ContentRating.EVERYONE,
     icon: 'icon.png',
-    version: '1.0.0',
+    version: '1.0.1',
     description: 'MyAnimeList Tracker',
     websiteBaseURL: 'https://myanimelist.net',
     intents: types_1.SourceIntents.MANGA_TRACKING | types_1.SourceIntents.SETTINGS_UI
@@ -2821,7 +2821,7 @@ class MyAnimeList {
         return __awaiter(this, void 0, void 0, function* () {
             const pageURL = metadata;
             const response = yield this.requestManager.schedule(App.createRequest({
-                url: pageURL !== null && pageURL !== void 0 ? pageURL : `${MYANIMELIST_API}/manga?q=${encodeURI((_a = query.title) !== null && _a !== void 0 ? _a : '')}`,
+                url: pageURL !== null && pageURL !== void 0 ? pageURL : `${MYANIMELIST_API}/manga?q=${encodeURI((_a = query.title) !== null && _a !== void 0 ? _a : '')}&nsfw=true`,
                 method: 'GET'
             }), 1);
             const malPage = (0, mal_result_1.MalResult)(response);
@@ -2847,7 +2847,7 @@ class MyAnimeList {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.requestManager.schedule(App.createRequest({
-                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}`),
+                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}&nsfw=true`),
                 method: 'GET'
             }), 1);
             const malManga = (0, mal_result_1.MalResult)(response);
@@ -2880,7 +2880,7 @@ class MyAnimeList {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.requestManager.schedule(App.createRequest({
-                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=my_list_status`),
+                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=my_list_status&nsfw=true`),
                 method: 'GET'
             }), 1);
             const malManga = (0, mal_result_1.MalResult)(response);
@@ -2903,7 +2903,7 @@ class MyAnimeList {
                 sections: () => __awaiter(this, void 0, void 0, function* () {
                     const [response] = yield Promise.all([
                         this.requestManager.schedule(App.createRequest({
-                            url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}`),
+                            url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}&nsfw=true`),
                             method: 'GET'
                         }), 1),
                         this.userInfo.refresh()
@@ -3114,7 +3114,7 @@ class MyAnimeList {
                     const status = (_y = (_x = values['status']) === null || _x === void 0 ? void 0 : _x[0]) !== null && _y !== void 0 ? _y : '';
                     if (status == 'NONE' && mangaId != null) {
                         yield this.requestManager.schedule(App.createRequest({
-                            url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status`,
+                            url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status&nsfw=true`,
                             method: 'DELETE'
                         }), 1);
                     }
@@ -3162,7 +3162,7 @@ class MyAnimeList {
                         };
                     }
                     const response = yield this.requestManager.schedule(App.createRequest({
-                        url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status`,
+                        url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status&nsfw=true`,
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/x-www-form-urlencoded'
