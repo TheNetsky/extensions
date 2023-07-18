@@ -2880,7 +2880,7 @@ class MyAnimeList {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.requestManager.schedule(App.createRequest({
-                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=my_list_status&nsfw=true`),
+                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=my_list_status`),
                 method: 'GET'
             }), 1);
             const malManga = (0, mal_result_1.MalResult)(response);
@@ -3114,7 +3114,7 @@ class MyAnimeList {
                     const status = (_y = (_x = values['status']) === null || _x === void 0 ? void 0 : _x[0]) !== null && _y !== void 0 ? _y : '';
                     if (status == 'NONE' && mangaId != null) {
                         yield this.requestManager.schedule(App.createRequest({
-                            url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status&nsfw=true`,
+                            url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status`,
                             method: 'DELETE'
                         }), 1);
                     }
@@ -3162,7 +3162,7 @@ class MyAnimeList {
                         };
                     }
                     const response = yield this.requestManager.schedule(App.createRequest({
-                        url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status&nsfw=true`,
+                        url: `${MYANIMELIST_API}/manga/${parseInt(mangaId)}/my_list_status`,
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/x-www-form-urlencoded'
