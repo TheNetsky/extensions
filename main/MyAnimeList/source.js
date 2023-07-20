@@ -2847,7 +2847,7 @@ class MyAnimeList {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.requestManager.schedule(App.createRequest({
-                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}&nsfw=true`),
+                url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}`),
                 method: 'GET'
             }), 1);
             const malManga = (0, mal_result_1.MalResult)(response);
@@ -2903,7 +2903,7 @@ class MyAnimeList {
                 sections: () => __awaiter(this, void 0, void 0, function* () {
                     const [response] = yield Promise.all([
                         this.requestManager.schedule(App.createRequest({
-                            url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}&nsfw=true`),
+                            url: encodeURI(`${MYANIMELIST_API}/manga/${parseInt(mangaId)}?fields=id,title,main_picture,alternative_titles,synopsis,mean,rank,popularity,nsfw,media_type,status,my_list_status,num_volumes,num_chapters,authors{first_name,last_name}`),
                             method: 'GET'
                         }), 1),
                         this.userInfo.refresh()
